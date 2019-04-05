@@ -35,4 +35,30 @@
 //     - Get creative! There are a lot of addons to this app which you could create so feel free to work with your group 
 //     to come up with something not listed above!
 
-var test;
+var inquirer = require("inquirer");
+
+inquirer
+  .prompt([
+    {
+      type: "list",
+      choices: ["Seller","Bidder"],
+      message: "Are you a seller or bidder?",
+      name: "action"
+    },
+    // {
+    //   type: "input",
+    //   message: "What state",
+    //   name: "state"
+    // },
+    // {
+    //   type: "confirm",
+    //   message: "Are you sure:",
+    //   name: "confirm",
+    //   default: true
+    // }
+  ])
+  // debugger;
+  .then(function(res) {
+      console.log("You selected " + res.action);
+      
+      });
