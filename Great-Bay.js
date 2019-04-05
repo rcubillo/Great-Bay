@@ -46,21 +46,17 @@ inquirer
             choices: ["Seller", "Bidder"],
             message: "Are you a seller or bidder?",
             name: "action"
-        },
-        // {
-        //   type: "input",
-        //   message: "What state",
-        //   name: "state"
-        // },
-        // {
-        //   type: "confirm",
-        //   message: "Are you sure:",
-        //   name: "confirm",
-        //   default: true
-        // }
-    ])
-    // debugger;
-    .then(function (res) {
-        console.log("You selected " + res.action);
+        }
+    ]).then(function (res) {
+        var action = res.action;
 
+
+        if (action === "Bidder") {
+            // CREATE A NEW BID
+            console.log("I'm a bidder!");
+        }
+        if (action === "Seller") {
+            // DISPLAY BIDS
+            console.log("I'm a bidder!");
+        }
     });
