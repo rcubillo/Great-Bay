@@ -39,24 +39,58 @@
 var inquirer = require("inquirer");
 var mysql = require("mysql");
 
-inquirer
-    .prompt([
-        {
-            type: "list",
-            choices: ["Seller", "Bidder"],
-            message: "Are you a seller or bidder?",
-            name: "action"
-        }
-    ]).then(function (res) {
-        var action = res.action;
+var connection = mysql.createConnection({
+    host: "localhost",
 
+    // Your port; if not 3306
+    port: 3306,
 
-        if (action === "Bidder") {
-            // CREATE A NEW BID
-            console.log("I'm a bidder!");
-        }
-        if (action === "Seller") {
-            // DISPLAY BIDS
-            console.log("I'm a bidder!");
-        }
+    // Your username
+    user: "root",
+
+    // Your password
+    password: "mypass",
+    database: "great_bay"
+});
+
+connection.connect(function (err) {
+    if (err) throw err;
+    console.log("connected as id " + connection.threadId + "\n");
+
+    readData();
+});
+
+function readData() {
+    console.log("Reading all bids...\n");
+    connection.query("SELECT * FROM items", function (err, res) {
+        if (err) throw err;
+        // Log all results of the SELECT statement
+        console.log(res);
+        connection.end();
     });
+}
+
+
+// inquirer
+//     .prompt([
+//         {
+//             type: "list",
+//             choices: ["Seller", "Bidder"],
+//             message: "Are you a seller or bidder?",
+//             name: "action"
+//         }
+//     ]).then(function (res) {
+//         var action = res.action;
+
+
+//         if (action === "Bidder") {
+//             // CREATE A NEW BID
+//             console.log("I'm a bidder!");
+//         }
+//         if (action === "Seller") {
+//             // DISPLAY BIDS
+//             console.log("I'm a bidder!");
+//         }
+//     });
+
+
