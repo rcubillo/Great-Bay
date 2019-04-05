@@ -1,0 +1,24 @@
+{
+  "name": "great-bay",
+  "version": "1.0.0",
+  "description": "",
+  "main": "Great-Bay.js",
+  "dependencies": {
+    "inquirer": "^6.2.2",
+    "mysql": "^2.16.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rcubillo/Great-Bay.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rcubillo/Great-Bay/issues"
+  },
+  "homepage": "https://github.com/rcubillo/Great-Bay#readme"
+}

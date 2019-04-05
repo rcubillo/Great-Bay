@@ -1,4 +1,4 @@
-// - Within your groups you are going to be creating a Node application called "Great-Bay" which allows users 
+// - Within your groups you are going to be creating a Node application called "Great-Bay" which allows users
 // to create and bid on assorted items, tasks, jobs, or projects.
 // - The basic application is fairly simple: Upon loading up the program, the user is prompted on whether they 
 // would like to "POST AN ITEM" or "BID ON AN ITEM"
@@ -34,6 +34,7 @@
 
 //     - Get creative! There are a lot of addons to this app which you could create so feel free to work with your group 
 //     to come up with something not listed above!
+<<<<<<< HEAD
 
 var inquirer = require("inquirer");
 
@@ -62,3 +63,5 @@ inquirer
       console.log("You selected " + res.action);
       
       });
+=======
+>>>>>>> eb83277d666dbb27efd86ef3764bdce3e853eb20
