@@ -55,9 +55,6 @@ var connection = mysql.createConnection({
 
 connection.connect(function (err) {
     if (err) throw err;
-    console.log("connected as id " + connection.threadId + "\n");
-
-    readData();
 });
 
 function readData() {
@@ -70,27 +67,61 @@ function readData() {
     });
 }
 
+function createAuction() {
+    inquirer.prompt([
+        {
+            type: "input",
+            message: "What are you selling?",
+            name: "title"
+        },
+        {
+            type: "input",
+            message: "What is the opening bid price?",
+            name: "price"
+        },
+        {
+            type: "input",
+            message: "How long is your bid?",
+            name: "time_limit"
+        }
+    ]).then(function (response) {
 
-// inquirer
-//     .prompt([
-//         {
-//             type: "list",
-//             choices: ["Seller", "Bidder"],
-//             message: "Are you a seller or bidder?",
-//             name: "action"
-//         }
-//     ]).then(function (res) {
-//         var action = res.action;
+        var query = connection.query(
+            "INSERT INTO items SET ?",
+            {
+                title: response.title,
+                price: response.price,
+                time_limit: response.time_limit
+            },
+            function (err, res) {
+                readData();
+            }
+        );
+    });
+}
 
 
-//         if (action === "Bidder") {
-//             // CREATE A NEW BID
-//             console.log("I'm a bidder!");
-//         }
-//         if (action === "Seller") {
-//             // DISPLAY BIDS
-//             console.log("I'm a bidder!");
-//         }
-//     });
+inquirer
+    .prompt([
+        {
+            type: "list",
+            choices: ["Seller", "Bidder"],
+            message: "Are you a seller or bidder?",
+            name: "action"
+        }
+    ]).then(function (res) {
+        var action = res.action;
+
+
+        if (action === "Bidder") {
+            // CREATE A NEW BID
+            console.log("I'm a bidder!");
+            readData();
+        }
+        if (action === "Seller") {
+            // DISPLAY BIDS
+            createAuction();
+        }
+    });
 
 
